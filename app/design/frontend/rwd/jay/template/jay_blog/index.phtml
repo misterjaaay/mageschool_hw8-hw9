@@ -1,0 +1,39 @@
+<h1>MY Posts</h1>
+
+ <?php
+$blogposts = $this->getPosts();
+$blogViewUrl = Mage::getUrl('jayblog/index/view');
+?>
+
+<h2>Blogs List</h2>
+<div class="std">
+	<ol>
+	 <?php foreach ($blogposts as $item): ?>
+	    <li>
+	        <!--  <a href="<?php echo $blogViewUrl; ?>blogpost_id/<?php echo $item->getId(); ?>"></a>  -->
+	            <h3><?php echo $item->getTitle(); ?></h3>
+	            <b><?php echo $item->getCategory(); ?></b>
+	            <p><?php echo $item->getPostContent(); ?></p>
+	        
+	    </li>
+	 <?php endforeach; ?>
+	</ol>
+</div>
+<div class='fieldset'>
+	<h2>Add new post</h2>	
+	<form enctype="multipart/form-data" id='my-custom-form'	action="<?php echo Mage::getUrl("jayblog/index/view")?>" method="post">
+		<input type="text" class="input-text required-entry" name="title" id="" placeholder='title' />
+		<input type="text" class="input-text required-entry" name="category" id="" placeholder='category' />
+		<!-- 	 <input type="file" name="fileToUpload" id="fileToUpload"> -->
+		<textarea name="content" id="" cols="30" rows="10" placeholder='post content'></textarea>
+		<input type="submit" name="post" value="Send" />
+	</form>
+	
+	<script type="text/javascript"> <!-- form validation -->
+	    //< ![CDATA[
+	        var customForm = new VarienForm('my-custom-form');
+	    //]]>
+	</script>
+</div>
+
+
